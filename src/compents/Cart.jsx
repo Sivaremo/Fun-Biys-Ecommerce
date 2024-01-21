@@ -46,7 +46,7 @@ const Cart = () => {
             </div>
             <div className="col-md-4">
               <h3>{cartItem.title}</h3>
-              <p className="lead fw-bold"> ₹ {parseInt(cartItem.price * 84)}</p>
+              <p className="lead fw-bold"> ₹ {parseInt(cartItem.price * 84*cartItem.qty)}</p>
             </div>
             <div className="col-md-2">
                 <p className="fw-bold text-center">Quality</p>
@@ -67,7 +67,7 @@ const Cart = () => {
   };
 
   const calculateTotalAmount = () => {
-    return state.reduce((total, cartItem) => total + cartItem.price * 84, 0);
+    return state.reduce((total, cartItem) => total + cartItem.price * 84 * cartItem.qty, 0);
   };
 
   const calculateTotalQuantity = () => {

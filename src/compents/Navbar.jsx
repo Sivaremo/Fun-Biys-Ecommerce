@@ -44,7 +44,9 @@ export default function Navbar() {
                 <a className="nav-link" href="#">Contact</a>
               </li>
             </ul>
+            
             <div className="buttons">
+              
               <NavLink to={"/login"} className='btn btn-outline-dark me-2'><i className='fa fa-sign-in'></i> Login</NavLink>
               <NavLink to={'/register'} className='btn btn-outline-dark me-2'><i className='fa fa-plus '></i> Register</NavLink>
               <NavLink to="/cart" className='btn btn-outline-dark me-2'><i className='fa fa-sign-in '></i> Cart ({cartItemsLength})</NavLink>

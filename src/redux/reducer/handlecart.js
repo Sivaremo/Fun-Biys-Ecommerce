@@ -25,15 +25,17 @@ const handlecart = (state = [], action) => {
       case 'INCREMENT_ITEM':
         return state.map((item) => ({
           ...item,
+          
           qty: item.id === product.id ? item.qty + 1 : item.qty,
-          price: item.id === product.id ? item.price * (item.qty + 1) : item.price,
+          price: item.id === product.id ? item.price  : item.price,
+          
         }));
   
         case 'DECREMENT_ITEM':
           return state.map((item) => ({
             ...item,
             qty: item.id === product.id ? Math.max(1, item.qty - 1) : item.qty,
-            price: item.id === product.id ? item.price / item.qty : item.price,
+            price: item.id === product.id ? item.price: item.price,
           }));
         
   

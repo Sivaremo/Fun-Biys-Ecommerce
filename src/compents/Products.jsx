@@ -10,6 +10,7 @@ export default function
   const [data, setdata] = useState([]);
   const [filter, setfilter] = useState([data]);
   const [loading, setLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
  
   let compountmounted = true;
   const dispatch = useDispatch();
@@ -95,6 +96,18 @@ export default function
     const updated=data.filter((x)=>x.category == cat);
     setfilter(updated);
   }
+  
+  const handleSearch = (event) => {
+    const searchTerm = event.target.value.toLowerCase();
+    setSearchTerm(searchTerm);
+    const filteredProducts = data.filter(
+      (product) =>
+        product.title.toLowerCase().includes(searchTerm) ||
+        product.category.toLowerCase().includes(searchTerm)
+    );
+    setfilter(filteredProducts);
+  };
+
   const Showproducts = () => {
     return (
       <>
@@ -151,12 +164,30 @@ export default function
 
   return (
     <>
+    
       <div className="container mt-3 ">
         <div className="row">
           <div className="col-12 mb-5">
             <h1 className='display-6 fw-bolder text-center'>Latest Products</h1>
             <hr />
           </div>
+         <div className="container-fluid">
+         <form className="d-flex mb-3" onSubmit={(e) => e.preventDefault()}>
+          <input
+            className="form-control me-2"
+            type="search"
+            placeholder="Search Here"
+            aria-label="Search"
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+          <button className="btn btn-outline-primary" type="submit">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+
+         </div>
+    
           <div className="row d-flex justify-content-around">
             {loading ? <Loading /> : <Showproducts />}
           </div>
